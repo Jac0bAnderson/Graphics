@@ -22,6 +22,8 @@ import javax.swing.SpringLayout;
 		private ShapePanel shapePanel;
 		private JButton drawRectangle;
 		private ArrayList<Rectangle> rectangleList;
+		public String recString;
+		private int recCount;
 		
 
 		public DrawingPanel(GraphicController baseController)
@@ -30,6 +32,8 @@ import javax.swing.SpringLayout;
 			baseLayout = new SpringLayout();
 			rectangleList = new ArrayList<Rectangle>();
 			drawRectangle = new JButton("Click for shapes");
+			recCount = 1;
+			
 			shapePanel = new ShapePanel();
 			setupPanel();
 			setupLayout();
@@ -37,11 +41,13 @@ import javax.swing.SpringLayout;
 		}
 		private void setupPanel()
 		{
-	
+			this.add(drawRectangle );
+			this.setLayout(baseLayout);
 		}
 		private void setupLayout()
 		{
-	
+			baseLayout.putConstraint(SpringLayout.SOUTH, drawRectangle, -82, SpringLayout.SOUTH, this);
+			baseLayout.putConstraint(SpringLayout.EAST, drawRectangle, -151, SpringLayout.EAST, this);
 		}
 		private void setupListeners()
 		{
@@ -49,12 +55,15 @@ import javax.swing.SpringLayout;
 			{
 				public void actionPerformed(ActionEvent click)
 				{
-					int xPosition = (int)(Math.random()* 600);
-					int yPosition = (int) (Math.random()*600);
+					int xPosition = (int)(Math.random()* 800);
+					int yPosition = (int) (Math.random()* 800);
 					int width = (int) (Math.random()* 50);
 					int height = (int) (Math.random()* 50);
 					rectangleList.add(new Rectangle(xPosition, yPosition, width, height));
 					repaint();
+					recCount++;
+					recString = Integer.toString(recCount);
+					drawRectangle.setText(recString);
 				}
 			});
 		}

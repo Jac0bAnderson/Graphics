@@ -15,8 +15,8 @@ public class GraphicFrame  extends JFrame
 	private void setupFrame()
 	{
 		this.setContentPane(basePanel);
-		this.setSize(500, 500);
-		this.setResizable(true);
+		this.setSize(800, 800);
+		this.setResizable(false);
 		this.setTitle("But The Graphics");
 		this.setVisible(true);
 	}
