@@ -1,5 +1,23 @@
 package graphics.view;
-
-public class GraphicFrame {
-
+import javax.swing.JFrame;
+import graphics.controller.GraphicController;
+public class GraphicFrame  extends JFrame
+{
+	private DrawingPanel basePanel;
+	private GraphicController baseController;
+	public GraphicFrame(GraphicController baseController)
+	{
+		this.baseController = baseController;
+		basePanel = new DrawingPanel(baseController);
+		setupFrame();
+	
+	}
+	private void setupFrame()
+	{
+		this.setContentPane(basePanel);
+		this.setSize(500, 500);
+		this.setResizable(true);
+		this.setTitle("But The Graphics");
+		this.setVisible(true);
+	}
 }
