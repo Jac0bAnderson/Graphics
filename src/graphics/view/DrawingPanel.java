@@ -23,6 +23,7 @@ import javax.swing.SpringLayout;
 		private JButton drawRectangle;
 		private JButton drawCircle;
 		private JButton drawTriangle;
+		private JButton clearButton;
 		private ArrayList<Rectangle> rectangleList;
 		public String recString;
 		private int recCount;
@@ -110,7 +111,15 @@ import javax.swing.SpringLayout;
 				}
 				
 			});
-		}
+			clearButton.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent click)
+				{ 
+					shapePanel.clear();
+					repaint();
+				}
+				
+			});		}
 		@Override
 		protected void paintComponent(Graphics currentGraphics)
 		{

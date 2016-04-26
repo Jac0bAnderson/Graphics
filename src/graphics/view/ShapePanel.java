@@ -4,6 +4,7 @@ import graphics.controller.GraphicController;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
@@ -25,6 +26,7 @@ private ArrayList<Ellipse2D> ellipseList;
 private ArrayList<Polygon> triangleList;
 private ArrayList<Polygon> polygonList;
 
+
 public ShapePanel()
 {
 	
@@ -36,6 +38,7 @@ public ShapePanel()
 	ellipseList = new ArrayList<Ellipse2D>();
 	circleList = new ArrayList<Ellipse2D>();
 	squareList = new ArrayList<Rectangle>();
+	
 	
 	setUpPane();
 	setUpPanel();
@@ -102,6 +105,15 @@ protected void paintComponent(Graphics currentGraphics)
 		mainGraphics.setStroke(new BasicStroke(pencilSize));
 		mainGraphics.draw(triangle);
 	}
+}
+public void clear()
+{
+ polygonList.clear();
+ triangleList.clear();
+ circleList.clear();
+ rectangleList.clear();
+ ellipseList.clear();
+ 
 }
 private void setUpPane()
 {
