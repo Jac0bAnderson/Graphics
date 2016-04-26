@@ -21,6 +21,8 @@ import javax.swing.SpringLayout;
 		private GraphicController baseController;
 		private ShapePanel shapePanel;
 		private JButton drawRectangle;
+		private JButton drawCircle;
+		private JButton drawTriangle;
 		private ArrayList<Rectangle> rectangleList;
 		public String recString;
 		private int recCount;
@@ -31,21 +33,40 @@ import javax.swing.SpringLayout;
 			this.baseController = baseController;
 			baseLayout = new SpringLayout();
 			rectangleList = new ArrayList<Rectangle>();
-			drawRectangle = new JButton("Click for shapes");
+			drawRectangle = new JButton("Rectangle");
 			recCount = 1;
+			drawCircle = new JButton("Circle");
+			
+			drawTriangle = new JButton("Triangle");
+			
 			
 			shapePanel = new ShapePanel();
+			baseLayout.putConstraint(SpringLayout.NORTH, shapePanel, 10, SpringLayout.NORTH, this);
+			baseLayout.putConstraint(SpringLayout.WEST, shapePanel, 23, SpringLayout.WEST, this);
+			baseLayout.putConstraint(SpringLayout.SOUTH, shapePanel, 478, SpringLayout.NORTH, this);
+			baseLayout.putConstraint(SpringLayout.EAST, shapePanel, -73, SpringLayout.EAST, this);
+			
 			setupPanel();
 			setupLayout();
 			setupListeners();
 		}
 		private void setupPanel()
 		{
+			this.setBackground(Color.WHITE);
+			this.add(shapePanel);
+			this.add(drawCircle);
+			this.add(drawTriangle);
 			this.add(drawRectangle );
 			this.setLayout(baseLayout);
 		}
 		private void setupLayout()
 		{
+			baseLayout.putConstraint(SpringLayout.NORTH, drawTriangle, 0, SpringLayout.NORTH, drawCircle);
+			baseLayout.putConstraint(SpringLayout.WEST, drawTriangle, 4, SpringLayout.EAST, drawRectangle);
+			baseLayout.putConstraint(SpringLayout.NORTH, drawTriangle, 0, SpringLayout.NORTH, drawCircle);
+			baseLayout.putConstraint(SpringLayout.WEST, drawTriangle, 4, SpringLayout.EAST, drawRectangle);
+			baseLayout.putConstraint(SpringLayout.NORTH, drawCircle, 0, SpringLayout.NORTH, drawRectangle);
+			baseLayout.putConstraint(SpringLayout.EAST, drawCircle, -6, SpringLayout.WEST, drawRectangle);
 			baseLayout.putConstraint(SpringLayout.SOUTH, drawRectangle, -82, SpringLayout.SOUTH, this);
 			baseLayout.putConstraint(SpringLayout.EAST, drawRectangle, -151, SpringLayout.EAST, this);
 		}
@@ -54,8 +75,8 @@ import javax.swing.SpringLayout;
 			drawRectangle.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent click)
-				{
-					int xPosition = (int)(Math.random()* 800);
+				{ /**
+				int xPosition = (int)(Math.random()* 800);
 					int yPosition = (int) (Math.random()* 800);
 					int width = (int) (Math.random()* 50);
 					int height = (int) (Math.random()* 50);
@@ -64,7 +85,30 @@ import javax.swing.SpringLayout;
 					recCount++;
 					recString = Integer.toString(recCount);
 					drawRectangle.setText(recString);
+				**/
+					shapePanel.addTriangle();
+					repaint();
+					
 				}
+				
+			});
+			drawCircle.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent click)
+				{ 
+					shapePanel.addCircle();
+					repaint();
+				}
+				
+			});
+			drawTriangle.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent click)
+				{ 
+					shapePanel.addTriangle();
+					repaint();
+				}
+				
 			});
 		}
 		@Override
