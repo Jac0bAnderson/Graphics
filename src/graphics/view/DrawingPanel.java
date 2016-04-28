@@ -8,7 +8,6 @@ import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
 import graphics.controller.GraphicController;
 
 import javax.swing.JButton;
@@ -26,6 +25,7 @@ import javax.swing.SpringLayout;
 		private JButton clearButton;
 		private JButton drawEllipse;
 		private JButton drawSquare;
+		private JButton drawPolygon;
 		private ArrayList<Rectangle> rectangleList;
 		public String recString;
 		
@@ -45,6 +45,10 @@ import javax.swing.SpringLayout;
 			clearButton = new JButton("clear");
 			drawSquare = new JButton("Square");
 			
+			drawPolygon = new JButton("Polygon");
+			
+			
+			
 
 			
 			
@@ -54,6 +58,7 @@ import javax.swing.SpringLayout;
 		}
 		private void setupPanel()
 		{
+			this.add(drawPolygon);
 			this.add(drawSquare);
 			this.setBackground(Color.WHITE);
 			this.add(shapePanel);
@@ -66,8 +71,10 @@ import javax.swing.SpringLayout;
 		}
 		private void setupLayout()
 		{
-			baseLayout.putConstraint(SpringLayout.NORTH, clearButton, 0, SpringLayout.NORTH, drawSquare);
-			baseLayout.putConstraint(SpringLayout.EAST, clearButton, -6, SpringLayout.WEST, drawSquare);
+			baseLayout.putConstraint(SpringLayout.NORTH, clearButton, 19, SpringLayout.SOUTH, drawSquare);
+			baseLayout.putConstraint(SpringLayout.EAST, clearButton, 0, SpringLayout.EAST, drawSquare);
+			baseLayout.putConstraint(SpringLayout.NORTH, drawPolygon, 0, SpringLayout.NORTH, drawSquare);
+			baseLayout.putConstraint(SpringLayout.EAST, drawPolygon, -3, SpringLayout.WEST, drawSquare);
 			baseLayout.putConstraint(SpringLayout.NORTH, drawSquare, 0, SpringLayout.NORTH, drawCircle);
 			baseLayout.putConstraint(SpringLayout.EAST, drawSquare, -6, SpringLayout.WEST, drawEllipse);
 			baseLayout.putConstraint(SpringLayout.NORTH, shapePanel, 10, SpringLayout.NORTH, this);
@@ -151,6 +158,15 @@ import javax.swing.SpringLayout;
 				public void actionPerformed(ActionEvent click)
 				{ 
 					shapePanel.addSquare();
+					repaint();
+				}
+				
+			});	
+			drawPolygon.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent click)
+				{ 
+					shapePanel.addPolygon();
 					repaint();
 				}
 				

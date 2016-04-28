@@ -78,13 +78,13 @@ public void addTriangle()
 }
 public void addPolygon()
 {
-	int numberOfSides = (int)(Math.random()* 101);
+	int numberOfSides = (int)(Math.random()* 100) + 3;
 	int [] xPoints = new int [numberOfSides];
 	int [] yPoints = new int [numberOfSides];
 	for(int sides = 0; sides < numberOfSides; sides++)
 	{
-		xPoints[sides] = (int) (Math.random()* 300);
-		yPoints[sides] = (int) (Math.random()* 300);
+		xPoints[sides] = (int) (Math.random()* 650);
+		yPoints[sides] = (int) (Math.random()* 500);
 	}
 	Polygon myPolygon = new Polygon(xPoints, yPoints, numberOfSides);
 	polygonList.add(myPolygon);
@@ -97,7 +97,9 @@ public void addRectangle()
 	int width = (int) (Math.random()* 50);
 	int height = (int) (Math.random()* 50);
 	//Rectangle2D rectangle(xPosition, yPosition, width, height);
+	
 	rectangleList.add(new Rectangle(xPosition, yPosition, width, height));
+	
 	repaint();
 }
 public void addSquare()
@@ -134,10 +136,21 @@ protected void paintComponent(Graphics currentGraphics)
 		int red = (int)(Math.random()* 256);
 		int blue = (int)(Math.random()* 256);
 		int green = (int)(Math.random()* 256);
-		int pencilSize = (int) (Math.random()*15)+5;
+		int pencilSize = (int) (Math.random()*10)+5;
 		mainGraphics.setColor(new Color(red, green, blue));
 		mainGraphics.setStroke(new BasicStroke(pencilSize));
 		mainGraphics.draw(triangle);
+	}
+	//polygon
+	for(Polygon polygon : polygonList)
+	{
+		int red = (int)(Math.random()* 256);
+		int blue = (int)(Math.random()* 256);
+		int green = (int)(Math.random()* 256);
+		int pencilSize = (int) (Math.random()*1)+5;
+		mainGraphics.setColor(new Color(red, green, blue));
+		mainGraphics.setStroke(new BasicStroke(pencilSize));
+		mainGraphics.draw(polygon);
 	}
 	//ellipse
 	for(Ellipse2D ellipse : ellipseList )
