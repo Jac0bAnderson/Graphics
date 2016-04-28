@@ -186,15 +186,34 @@ protected void paintComponent(Graphics currentGraphics)
 		mainGraphics.draw(square);
 	}
 }
-public void clear()
+
+public void clear(boolean rectangleClear, boolean cirlceClear, boolean ellipseClear, boolean squareClear, boolean polygonClear, boolean triangleClear)
 {
- polygonList.clear();
- triangleList.clear();
- circleList.clear();
- rectangleList.clear();
- ellipseList.clear();
- squareList.clear();
- 
+	if(rectangleClear == true)
+	{
+		rectangleList.clear();
+	}
+	if(cirlceClear == true)
+	{
+		circleList.clear();
+	}
+	if(ellipseClear == true)
+	{
+		ellipseList.clear();
+	}
+	if(squareClear == true)
+	{
+		squareList.clear();
+	}
+	if(polygonClear == true)
+	{
+		polygonList.clear();
+	}
+	if(triangleClear == true)
+	{
+		triangleList.clear();
+	}
+		
 }
 private void setUpPane()
 {
