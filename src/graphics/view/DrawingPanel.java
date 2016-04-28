@@ -24,9 +24,11 @@ import javax.swing.SpringLayout;
 		private JButton drawCircle;
 		private JButton drawTriangle;
 		private JButton clearButton;
+		private JButton drawEllipse;
+		private JButton drawSquare;
 		private ArrayList<Rectangle> rectangleList;
 		public String recString;
-		private int recCount;
+		
 		
 
 		public DrawingPanel(GraphicController baseController)
@@ -35,17 +37,16 @@ import javax.swing.SpringLayout;
 			baseLayout = new SpringLayout();
 			rectangleList = new ArrayList<Rectangle>();
 			drawRectangle = new JButton("Rectangle");
-			recCount = 1;
+	
 			drawCircle = new JButton("Circle");
-			
 			drawTriangle = new JButton("Triangle");
-			
-			
 			shapePanel = new ShapePanel();
-			baseLayout.putConstraint(SpringLayout.NORTH, shapePanel, 10, SpringLayout.NORTH, this);
-			baseLayout.putConstraint(SpringLayout.WEST, shapePanel, 23, SpringLayout.WEST, this);
-			baseLayout.putConstraint(SpringLayout.SOUTH, shapePanel, 478, SpringLayout.NORTH, this);
-			baseLayout.putConstraint(SpringLayout.EAST, shapePanel, -73, SpringLayout.EAST, this);
+			drawEllipse = new JButton("Ellipse");
+			clearButton = new JButton("clear");
+			drawSquare = new JButton("Square");
+			
+
+			
 			
 			setupPanel();
 			setupLayout();
@@ -53,15 +54,26 @@ import javax.swing.SpringLayout;
 		}
 		private void setupPanel()
 		{
+			this.add(drawSquare);
 			this.setBackground(Color.WHITE);
 			this.add(shapePanel);
 			this.add(drawCircle);
 			this.add(drawTriangle);
 			this.add(drawRectangle );
 			this.setLayout(baseLayout);
+			
+						
 		}
 		private void setupLayout()
 		{
+			baseLayout.putConstraint(SpringLayout.NORTH, clearButton, 0, SpringLayout.NORTH, drawSquare);
+			baseLayout.putConstraint(SpringLayout.EAST, clearButton, -6, SpringLayout.WEST, drawSquare);
+			baseLayout.putConstraint(SpringLayout.NORTH, drawSquare, 0, SpringLayout.NORTH, drawCircle);
+			baseLayout.putConstraint(SpringLayout.EAST, drawSquare, -6, SpringLayout.WEST, drawEllipse);
+			baseLayout.putConstraint(SpringLayout.NORTH, shapePanel, 10, SpringLayout.NORTH, this);
+			baseLayout.putConstraint(SpringLayout.WEST, shapePanel, 23, SpringLayout.WEST, this);
+			baseLayout.putConstraint(SpringLayout.SOUTH, shapePanel, 478, SpringLayout.NORTH, this);
+			baseLayout.putConstraint(SpringLayout.EAST, shapePanel, -73, SpringLayout.EAST, this);
 			baseLayout.putConstraint(SpringLayout.NORTH, drawTriangle, 0, SpringLayout.NORTH, drawCircle);
 			baseLayout.putConstraint(SpringLayout.WEST, drawTriangle, 4, SpringLayout.EAST, drawRectangle);
 			baseLayout.putConstraint(SpringLayout.NORTH, drawTriangle, 0, SpringLayout.NORTH, drawCircle);
@@ -70,6 +82,10 @@ import javax.swing.SpringLayout;
 			baseLayout.putConstraint(SpringLayout.EAST, drawCircle, -6, SpringLayout.WEST, drawRectangle);
 			baseLayout.putConstraint(SpringLayout.SOUTH, drawRectangle, -82, SpringLayout.SOUTH, this);
 			baseLayout.putConstraint(SpringLayout.EAST, drawRectangle, -151, SpringLayout.EAST, this);
+			add(clearButton);
+			baseLayout.putConstraint(SpringLayout.NORTH, drawEllipse, 0, SpringLayout.NORTH, drawCircle);
+			baseLayout.putConstraint(SpringLayout.EAST, drawEllipse, -6, SpringLayout.WEST, drawCircle);
+			add(drawEllipse);
 		}
 		private void setupListeners()
 		{
@@ -87,7 +103,8 @@ import javax.swing.SpringLayout;
 					recString = Integer.toString(recCount);
 					drawRectangle.setText(recString);
 				**/
-					shapePanel.addTriangle();
+					shapePanel.addRectangle();
+					//shapePanel.addTriangle();
 					repaint();
 					
 				}
@@ -119,7 +136,27 @@ import javax.swing.SpringLayout;
 					repaint();
 				}
 				
-			});		}
+			});		
+			drawEllipse.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent click)
+				{ 
+					shapePanel.addEllipse();
+					repaint();
+				}
+				
+			});	
+			drawRectangle.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent click)
+				{ 
+					shapePanel.addSquare();
+					repaint();
+				}
+				
+			});	
+			
+			}
 		@Override
 		protected void paintComponent(Graphics currentGraphics)
 		{
