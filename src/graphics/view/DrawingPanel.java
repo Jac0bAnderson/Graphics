@@ -46,6 +46,7 @@ import javax.swing.SpringLayout;
 		private SpringLayout baseLayout;
 		private GraphicController baseController;
 		private ShapePanel shapePanel;
+		private GraphPanel graphPanel;
 		
 		
 
@@ -59,6 +60,7 @@ import javax.swing.SpringLayout;
 			drawCircle = new JButton("Circle");
 			drawTriangle = new JButton("Triangle");
 			shapePanel = new ShapePanel();
+			graphPanel = new GraphPanel();
 			drawEllipse = new JButton("Ellipse");
 			clearButton = new JButton("clear");
 			drawSquare = new JButton("Square");
