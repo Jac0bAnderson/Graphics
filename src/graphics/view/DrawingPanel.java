@@ -29,7 +29,7 @@ import javax.swing.SpringLayout;
 		//checkboxes
 		private JCheckBox clearRectangle;
 		private JCheckBox clearCircle;
-		private JCheckBox clearTriangle;
+		private JCheckBox clearTriangle; 
 		private JCheckBox clearEllipse;
 		private JCheckBox clearSquare;
 		private JCheckBox clearPolygon;
