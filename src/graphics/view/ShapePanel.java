@@ -197,7 +197,7 @@ public void clear(boolean rectangleClear, boolean cirlceClear, boolean ellipseCl
 	{
 		circleList.clear();
 	}
-	if(ellipseClear == true)
+	if(ellipseClear == true )
 	{
 		ellipseList.clear();
 	}

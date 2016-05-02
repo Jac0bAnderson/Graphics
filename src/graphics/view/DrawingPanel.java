@@ -100,7 +100,6 @@ import javax.swing.SpringLayout;
 			this.add(clearSquare);
 			this.add(clearPolygon);
 			this.add(clearEllipse);
-			
 			this.setBackground(Color.WHITE);
 			this.add(drawSquare);
 			this.add(drawPolygon);
@@ -224,6 +223,16 @@ import javax.swing.SpringLayout;
 				public void actionPerformed(ActionEvent click)
 				{ 
 					shapePanel.addPolygon();
+					repaint();
+				}
+				
+			});	
+			
+			drawSquare.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent click)
+				{ 
+					shapePanel.addRectangle();
 					repaint();
 				}
 				
